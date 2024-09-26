@@ -364,8 +364,10 @@ async fn run_agg_job<S: Sync, A: DapLeader<S>>(
         return Ok(0);
     }
 
+    // TODO: this is hardcoding v09. would be good to deduce
+    // no idea why it does not work without setting an absolute path
     let url_path = format!(
-        "tasks/{}/aggregation_jobs/{}",
+        "/v09/tasks/{}/aggregation_jobs/{}",
         task_id.to_base64url(),
         agg_job_id.to_base64url()
     );

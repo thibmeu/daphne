@@ -32,10 +32,15 @@ You can use [generate-task](../crates/generate-task/) command line to generate a
 ## Run the test
 
 ```bash
+# Client uploads a report, which registers the ask somehow
+npm start
+
 # Collector initializes collection job
 cat query.json | COLLECTOR_BEARER_TOKEN="I-am-the-collector" cargo run --bin dapf leader collect --leader-url http://localhost:8787/v09/ --task-id 8TuT5Z5fAuutsX9DZWSqkUw6pzDl96d3tdsDJgWH2VY
 
-# Client uploads a report.
+# Client uploads a report. This is the only step we should have to do
+npm start
+# And a second, which is needed I don't know why
 npm start
 
 # Leader runs aggregation job and completes the collection job.

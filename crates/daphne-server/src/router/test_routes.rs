@@ -77,7 +77,7 @@ async fn check_storage_readyness(State(app): State<Arc<App>>) -> Response {
 
 #[tracing::instrument(skip(app))]
 async fn leader_process(State(app): State<Arc<App>>) -> Response {
-    match leader::process(&*app, "unspecified-daphne-worker-host", 100).await {
+    match leader::process(&*app, "unspecified-daphne-worker-host", 1).await {
         Ok(telem) => (StatusCode::OK, Json(telem)).into_response(),
         Err(e) => AxumDapResponse::new_error(e, app.server_metrics()).into_response(),
     }
