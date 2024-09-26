@@ -11,7 +11,9 @@ use daphne::{
     constants::DapMediaType,
     error::aborts::ProblemDetails,
     hpke::{HpkeKemId, HpkeReceiverConfig},
-    messages::{Base64Encode, BatchSelector, Collection, CollectionReq, Query, TaskId},
+    messages::{
+        Base64Encode, BatchSelector, Collection, CollectionJobId, CollectionReq, Query, TaskId,
+    },
     vdaf::VdafConfig,
     DapAggregationParam, DapMeasurement, DapVersion,
 };
@@ -502,7 +504,7 @@ async fn handle_leader_actions(
         }
         LeaderAction::Collect {
             leader_url,
-            task_id: _,
+            task_id,
         } => {
             // Read the batch selector from stdin.
             let mut buf = String::new();
@@ -528,17 +530,22 @@ async fn handle_leader_actions(
                         .as_str_for_version(version)
                         .ok_or_else(|| anyhow!("invalid content-type for dap version"))?,
                 )
-                .expect("failed to construct content-type hader"),
+                .expect("failed to construct content-type header"),
             );
-            if let Ok(token) = std::env::var("LEADER_BEARER_TOKEN") {
+            if let Ok(token) = std::env::var("COLLECTOR_BEARER_TOKEN") {
                 headers.insert(
                     reqwest::header::HeaderName::from_static(http_headers::DAP_AUTH_TOKEN),
                     reqwest::header::HeaderValue::from_str(&token)?,
                 );
             }
 
+            let coll_job_id = CollectionJobId(thread_rng().gen());
             let resp = http_client
-                .post(leader_url.join("collect")?)
+                .put(leader_url.join(&format!(
+                    "tasks/{}/collection_jobs/{}",
+                    task_id.to_base64url(),
+                    coll_job_id.to_base64url(),
+                ))?)
                 .body(collect_req.get_encoded_with_param(&version)?)
                 .headers(headers)
                 .send()
@@ -551,6 +558,8 @@ async fn handle_leader_actions(
                 return Err(response_to_anyhow(resp).await);
             }
 
+            // TODO(cjpatton) Check whether we expect a Location header in the response. This was
+            // true of draft 02, but may not be true of 09 or the current draft.
             let uri_str = resp
                 .headers()
                 .get("Location")

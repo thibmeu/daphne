@@ -49,10 +49,13 @@ impl DapLeader<DaphneAuth> for crate::App {
             .await?
             .ok_or(DapAbort::UnrecognizedTask { task_id: *task_id })?;
 
-        self.test_leader_state
-            .lock()
-            .await
-            .put_report(task_id, &task_config, report.clone())
+        let res =
+            self.test_leader_state
+                .lock()
+                .await
+                .put_report(task_id, &task_config, report.clone());
+        tracing::info!("got here {}", res.is_ok());
+        res
     }
 
     async fn current_batch(&self, task_id: &TaskId) -> Result<BatchId, DapError> {
