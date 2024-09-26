@@ -1,0 +1,19 @@
+{
+    "collector_authentication_token": "I-am-the-collector",
+    "collector_hpke_config": "zAAgAAEAAQAgSsCznRoWZCcWz6UUySzOyqDesPJc_eoa0dRJYsEchBE",
+    "helper": "http://localhost:8788/v09",
+    "leader": "http://localhost:8787/v09",
+    "leader_authentication_token": "I-am-the-leader",
+    "max_batch_size": 12,
+    "min_batch_size": 1,
+    "query_type": 2,
+    "role": "leader",
+    "task_expiration": 1727948103,
+    "task_id": "8TuT5Z5fAuutsX9DZWSqkUw6pzDl96d3tdsDJgWH2VY",
+    "time_precision": 3600,
+    "vdaf": {
+      "bits": "8",
+      "type": "Prio3Sum"
+    },
+    "vdaf_verify_key": "fBB6wB3vO6hen1dqwqpvFA"
+  }
