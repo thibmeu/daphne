@@ -554,19 +554,15 @@ async fn handle_leader_actions(
                 let problem_details: ProblemDetails = serde_json::from_str(&resp.text().await?)
                     .with_context(|| "unexpected response")?;
                 return Err(anyhow!(serde_json::to_string(&problem_details)?));
-            } else if resp.status() != 303 {
-                return Err(response_to_anyhow(resp).await);
             }
 
             // TODO(cjpatton) Check whether we expect a Location header in the response. This was
             // true of draft 02, but may not be true of 09 or the current draft.
             let uri_str = resp
-                .headers()
-                .get("Location")
-                .ok_or_else(|| anyhow!("response is missing Location header"))?
-                .to_str()?;
+                .text().await?;
+            let uri_str = uri_str.strip_prefix('"').and_then(|s| s.strip_suffix('"')).unwrap_or(&uri_str);
             let uri =
-                Url::parse(uri_str).with_context(|| "Leader did not respond with valid URI")?;
+                Url::parse(&uri_str).with_context(|| "Leader did not respond with valid URI")?;
 
             println!("{uri}");
             Ok(())
