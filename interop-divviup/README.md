@@ -33,7 +33,7 @@ You can use [generate-task](../crates/generate-task/) command line to generate a
 
 ```bash
 # Collector initializes collection job
-cat query.json | cargo run --bin dapf leader collect --leader-url http://localhost:8787/v09/ --task-id 8TuT5Z5fAuutsX9DZWSqkUw6pzDl96d3tdsDJgWH2VY
+cat query.json | COLLECTOR_BEARER_TOKEN="I-am-the-collector" cargo run --bin dapf leader collect --leader-url http://localhost:8787/v09/ --task-id 8TuT5Z5fAuutsX9DZWSqkUw6pzDl96d3tdsDJgWH2VY
 
 # Client uploads a report.
 npm start
