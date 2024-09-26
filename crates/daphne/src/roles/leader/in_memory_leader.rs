@@ -131,7 +131,7 @@ impl InMemoryLeaderState {
         let coll_job_uri = task_config
             .leader_url
             .join(&format!(
-                "collect/task/{}/req/{}",
+                "/v09/collect/task/{}/req/{}",
                 task_id.to_base64url(),
                 coll_job_id.to_base64url(),
             ))
