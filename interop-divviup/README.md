@@ -31,6 +31,8 @@ You can use [generate-task](../crates/generate-task/) command line to generate a
 
 ## Run the test
 
+These commands, except the last one, can be run with `./test.sh`
+
 ```bash
 # Client uploads a report, which registers the ask somehow
 npm start
@@ -48,5 +50,5 @@ curl -X POST http://localhost:8787/internal/process
 
 # Collector polls collection job.
 # Collector init URL looks like http://localhost:8787/v09/collect/task/8TuT5Z5fAuutsX9DZWSqkUw6pzDl96d3tdsDJgWH2VY/req/1qVftsSS8IOH1xh9hvjdRQ
-curl -X POST <url-from-collector-init>
+curl -X POST -H 'dap-auth-token:I-am-the-collector' -H 'Content-Type:application/dap-collect-req' <url-from-collector-init>
 ```
