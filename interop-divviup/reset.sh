@@ -12,4 +12,6 @@ cargo run --bin dapf -- test-routes add-hpke-config http://localhost:8788/v09/ -
 
 # Configure task
 curl -X POST 'http://localhost:8787/v09/internal/test/add_task' -H 'Content-Type: application/json' -d @leader_task.json
+sleep 1
 curl -X POST 'http://localhost:8788/v09/internal/test/add_task' -H 'Content-Type: application/json' -d @helper_task.json
+sleep 1
