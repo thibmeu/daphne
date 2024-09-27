@@ -24,6 +24,7 @@ You can use [generate-task](../crates/generate-task/) command line to generate a
 These commands, except the last one, can be run with `./test.sh`
 
 ```bash
+./test.sh
 # Client uploads a report, which registers the ask somehow
 npm start
 

@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 # Clear the storage proxy
 curl -X POST http://localhost:8787/internal/delete_all
