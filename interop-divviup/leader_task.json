@@ -1,8 +1,8 @@
 {
     "collector_authentication_token": "I-am-the-collector",
     "collector_hpke_config": "zAAgAAEAAQAgSsCznRoWZCcWz6UUySzOyqDesPJc_eoa0dRJYsEchBE",
-    "helper": "http://localhost:8788/v09",
-    "leader": "http://localhost:8787/v09",
+    "helper": "http://localhost:8788/v09/",
+    "leader": "http://localhost:8787/v09/",
     "leader_authentication_token": "I-am-the-leader",
     "max_batch_size": 12,
     "min_batch_size": 1,
