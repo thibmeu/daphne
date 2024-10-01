@@ -14,6 +14,8 @@ Finally, create a task on the leader and helper. This repository offers an examp
 
 You can use [generate-task](../crates/generate-task/) command line to generate a new task.
 
+Copy the collector configuration from [leader/helper configuration](../crates/daphne-server/examples/configuration-leader.toml) into [hpke_collector_config.json](./hpke_collector_config.json).
+
 ## Requirements
 
 * Node 22+
