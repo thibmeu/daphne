@@ -4,6 +4,8 @@ The goal of this package is to send a DAP report from Node.js, and validate its 
 
 ## Pre-requisite
 
+Generate the collector configuration using `cargo run -- --bin dapf hpke generate p256_hkdf_sha256`. Then update the [leader/helper configuration](../crates/daphne-server/examples/configuration-leader.toml), copy the configuration in  [hpke_collector_config.json](./hpke_collector_config.json), and update generate-task/the local tasks.
+
 Start a server as described in [daphne-server](../crates/daphne-server/README.md). Also run the storage initialisation.
 
 Finally, create a task on the leader and helper. This repository offers an example Prio3Sum task. Use the following to add it to daphne-server helper and leader
@@ -13,8 +15,6 @@ Finally, create a task on the leader and helper. This repository offers an examp
 ```
 
 You can use [generate-task](../crates/generate-task/) command line to generate a new task.
-
-Copy the collector configuration from [leader/helper configuration](../crates/daphne-server/examples/configuration-leader.toml) into [hpke_collector_config.json](./hpke_collector_config.json).
 
 ## Requirements
 

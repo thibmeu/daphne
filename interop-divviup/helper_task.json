@@ -1,5 +1,5 @@
 {
-    "collector_hpke_config": "zAAgAAEAAQAgSsCznRoWZCcWz6UUySzOyqDesPJc_eoa0dRJYsEchBE",
+    "collector_hpke_config": "LAAQAAEAAQBBBLqwQJbxbGuht7ZF9wr4v3mVcI-_2RbTUt5oAZJPe3Jde2ZCO0gWT5qE_PN-59Rp5gl_oF7dyH97b8-vkA9l2S4",
     "helper": "http://localhost:8788/v09/",
     "leader": "http://localhost:8787/v09/",
     "leader_authentication_token": "I-am-the-leader",

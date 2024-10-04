@@ -19,9 +19,9 @@ echo "processing..."
 curl -X POST http://localhost:8787/internal/process
 sleep 1
 
-printf "\n\ncurl -X POST -H 'dap-auth-token:I-am-the-collector' -H 'Content-Type:application/dap-collect-req' '${collection_url}' -o /tpm/output\n"
+curl -X POST -H 'dap-auth-token:I-am-the-collector' -H 'Content-Type:application/dap-collect-req' "${collection_url}" -o /tmp/output
 
-echo "==== New test instructions based on https://github.com/cloudflare/daphne/pull/688"
+echo "==== New test instructions based on https://github.com/cloudflare/daphne/pull/688. Copy paste them"
 echo "cargo install --git https://github.com/cloudflare/daphne --branch mendess/add-decoding-to-dapf --bin dapf"
 
 cat <<'EOF'
